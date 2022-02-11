@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Porqueria</string>
+    <string name="introdu_varsta_ani">Introdu varsta (ani)</string>
+    <string name="introdu_talia_in_cm">Introdu talia (in cm)</string>
+    <string name="introdu_greutatea_in_kg">Introdu greutatea (in kg)</string>
+    <string name="first"> Sex:</string>
+    <string name="second">\nVarsta:</string>
+    <string name="third"> adica %3$s luni in total ;</string>
+    <string name="model">_____________________________________________</string>
+    <string name="forth"> Talia: %4$s cm,</string>
+    <string name="fifth"> * %5$s DS pt varsta si sex (cf CDC, WHO); </string>
+    <string name="sixth"> * percentila %6$s pt varsta si sex (cf CDC, WHO); </string>
+    <string name="seventh"> * %7$s DS pt varsta si sex (cf standardelor franceze 97);</string>
+    <string name="eigth"> Greutatea: %8$s kg,</string>
+    <string name="ninth"> * %9$s DS pt varsta si sex (cf CDC, WHO);</string>
+    <string name="tenth"> * percentila %10$s pt varsta si sex (cf CDC, WHO); </string>
+    <string name="eleventh"><![CDATA[ * %11$s % %12$s , cf std franceze 97; —>> Greutatea
+        corespunzatoare taliei pacientului este %13$s ; ]]></string>
+    <string name="fortheenth"> * S.c.= %14$s mp; </string>
+    <string name="fiftheenth"> IMC = %15$s kg/m2, </string>
+    <string name="sixteenth"> zscore = %16$s, </string>
+    <string name="seventeenth"> percentila %17$s ;</string>
+    <string name="eitheenth"> Indice nutritional = %18$s, %19$s ;</string>
+    <string name="twentheeth"> Indice ponderal = %20$s, %21$s ;</string>
+    <string name="twentytwo"> TA = %22$s/%23$s mmHg;</string>
+    <string name="twentyfour"> * p TAS coresp varstei si sexului este %24$s ;</string>
+    <string name="twentyfive"> * p TAD coresp varstei si sexului este %25$s ;</string>
+    <string name="twentysix"> -> p50= %26$s/ %27$s mmHg ;</string>
+    <string name="twentyeight"> -> p90= %28$s/ %29$s mmHg ;</string>
+    <string name="thirty"> -> p95= %30$s/ %31$s mmHg ;</string>
+    <string name="thirtytwo"> -> p99= %32$s/ %33$s mmHg ;</string>
+    <string name="thrityfour"> PC= %34$s cm, %35$s DS, percentila %36$s pt varsta si sex, conform CDC;</string>
+    <string name="thirtyfive"> Conform CDC pt varsta sub 2 ani si conform WHO pt 2–20 ani.</string>
+</resources>
