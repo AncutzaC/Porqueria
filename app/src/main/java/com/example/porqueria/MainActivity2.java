@@ -4,6 +4,8 @@ import static android.text.Html.FROM_HTML_MODE_LEGACY;
 import static com.example.porqueria.Porqueria.addBirthWeight;
 import static com.example.porqueria.Porqueria.addGender;
 import static com.example.porqueria.Porqueria.addHeight;
+import static com.example.porqueria.Porqueria.addHeightFather;
+import static com.example.porqueria.Porqueria.addHeightMother;
 import static com.example.porqueria.Porqueria.addMonths;
 import static com.example.porqueria.Porqueria.addPerimeter;
 import static com.example.porqueria.Porqueria.addTAD;
@@ -75,6 +77,7 @@ public class MainActivity2 extends AppCompatActivity {
                         "* percentila: " + percentilaHeight + " pt varsta si sex (cf CDC, WHO);\n" +
                         "* " + zscoreHeightF + " DS pt varsta si sex (cf CDC, WHO);\n" +
                         "* " + zscoreHeightRo + "DS pt varsta si sex (cf standardelor franceze '97)\n\n" +
+                        "* Talie mama = "+ addHeightMother+ " cm, Talie tata = " +addHeightFather+" cm,\nTalia tinta = "+ getTaliaTinta() + " cm\n"+
                         "_____________________________________________\n" +
                         "Greutatea: " + addWeight + "kg\n" +
                         "* percentila: " + percentilaWeight + " pt varsta si sex (cf CDC, WHO);\n"
@@ -101,11 +104,6 @@ public class MainActivity2 extends AppCompatActivity {
                         "Conform CDC pt varsta sub 2 ani si conform WHO pt 2-20 ani.");
 
 
-    }
-    private String getColoredSpanned(String text) {
-        //transforma textul in rosu
-        String input = "<font color=#800000>" + text + "</font>";
-        return input;
     }
 
     public static double getDoubleNumber(double desiredNumber) {
@@ -280,6 +278,20 @@ public class MainActivity2 extends AppCompatActivity {
         if (addWeight == 0){return 0;}
         else return (addWeight * 4 + 7) / (addWeight + 90);
         }
+
+    public double getTaliaTinta(){
+        double taliaTinta = 0;
+        if (addGender.equals("Feminin")){
+                taliaTinta = (addHeightMother+addHeightFather-13)/2;
+            }
+        if (addGender.equals("Masculin")){
+                taliaTinta = (addHeightMother+addHeightFather+13)/2;
+            }
+        if (addHeightMother ==0 || addHeightFather ==0){
+                taliaTinta = 0;
+            }
+            return getDoubleNumber(taliaTinta);
+    }
 
     static final class MyResult {
         private final int second, third, forth, fifth;

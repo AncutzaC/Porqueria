@@ -20,6 +20,7 @@
         tools:context=".MainActivity"
         tools:ignore="ExtraText">
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="0dp"
@@ -238,13 +239,53 @@
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/addPerimeter" />
 
+        <EditText
+            android:id="@+id/addHeight3"
+            android:layout_width="108dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="talia tatalui"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/addHeight2"
+            app:layout_constraintTop_toBottomOf="@+id/addBirthWeight" />
+
+        <EditText
+            android:id="@+id/addHeight2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="164dp"
+            android:ems="10"
+            android:hint="talia mamei"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/addBirthWeight" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="25dp"
+            android:text="Talia parintilor\n(in cm)"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
 
         <Button
             android:id="@+id/calculateWhatever"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="88dp"
             android:layout_marginEnd="11dp"
             android:background="@drawable/rect_rounded_button_pink"
             android:text="   Calculeaza whatever   "

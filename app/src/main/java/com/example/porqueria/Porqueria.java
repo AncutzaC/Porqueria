@@ -10,7 +10,7 @@ import java.util.List;
 public class Porqueria extends Application {
 
     public static int addYears, addMonths, addTotalMonths, addTAD, addTAS;
-    public static double addHeight, addWeight, addPerimeter;
+    public static double addHeight, addWeight, addPerimeter, addHeightMother, addHeightFather;
     public static String addGender;
     public static double zscoreWeight, zscoreHeight;
     public static double zscoreHeightRo, procentWeightToHeightRo, imc;

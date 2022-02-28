@@ -23,7 +23,8 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private Button resetButton, calculateWhatever;
-    private EditText addYears, addMonths, addWeight, addHeight, addTAS, addTAD, addPerimeter, addBirthWeight;
+    private EditText addYears, addMonths, addWeight, addHeight, addTAS, addTAD, addPerimeter,
+            addBirthWeight, addHeightMother, addHeightFather;
     private RadioButton checkFemale, checkMale, gender;
     private RadioGroup radioGroup;
 
@@ -74,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
         EditText et7 = (EditText) addBirthWeight;
         et7.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "6000")});
 
+        addHeightMother = findViewById(R.id.addHeight2);
+        EditText et8 = (EditText) addHeightMother;
+        et8.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "200")});
+
+        addHeightFather = findViewById(R.id.addHeight3);
+        EditText et9 = (EditText) addHeightFather;
+        et9.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "200")});
+
         checkFemale = findViewById(R.id.checkFemale);
         checkMale = findViewById(R.id.checkMale);
         radioGroup = findViewById(R.id.radioGroup);
@@ -98,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                 addTAD.setText("");
                 addPerimeter.setText("");
                 addBirthWeight.setText("");
+                addHeightMother.setText("");
+                addHeightFather.setText("");
             }
         });
 
@@ -142,6 +153,16 @@ public class MainActivity extends AppCompatActivity {
         if (Objects.requireNonNull(addBirthWeight.getText()).toString().trim().isEmpty())
             addBirthWeight.setText("0");
         Porqueria.addBirthWeight = Double.parseDouble(addBirthWeight.getText().toString());
+
+        if (Objects.requireNonNull(addHeightMother.getText()).toString().trim().isEmpty())
+            addHeightMother.setText("0");
+        Porqueria.addHeightMother = Double.parseDouble(addHeightMother.getText().toString());
+
+        if (Objects.requireNonNull(addHeightFather.getText()).toString().trim().isEmpty())
+            addHeightFather.setText("0");
+        Porqueria.addHeightFather = Double.parseDouble(addHeightFather.getText().toString());
+
+
 
         addGender = gender.getText().toString();
         addTotalMonths = (Porqueria.addYears * 12) + Porqueria.addMonths;
