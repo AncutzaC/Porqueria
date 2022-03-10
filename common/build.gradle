@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        // Multi-OS Engine plugin
+        classpath group: 'org.multi-os-engine', name: 'moe-gradle', version: '1.9.+'
+    }
+}
+
+// Apply plugins
+apply plugin: 'eclipse'
+apply plugin: 'moe'
+
+// Set source and target to Java 8
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+// Set maven repository
+repositories {
+    mavenCentral()
+}
+
+// Exclude all files from Gradle's test runner
+test { exclude '**' }
+
+// Setup Multi-OS Engine
+moe {
+    xcode {
+        project 'xcode/Porqueria.xcodeproj'
+        mainTarget 'Porqueria'
+        testTarget 'Porqueria-Test'
+
+        // Uncomment and change these settings if you are working with a Xcode workspace
+        // workspace 'xcode/Porqueria.xcworkspace'
+        // mainScheme 'Porqueria'
+        // testScheme 'Porqueria-Test'
+    }
+}
+
+dependencies {
+    // Compile with 'jar' files in the project's 'lib' directory
+    implementation fileTree(dir: 'lib', include: '*.jar')
+    implementation('com.squareup.retrofit2:retrofit:2.1.0')
+    implementation('com.squareup.retrofit2:converter-gson:2.1.0')
+    implementation('com.squareup.retrofit2:adapter-rxjava:2.1.0')
+    implementation('io.reactivex:rxjava:1.1.6')
+}
+
+// Setup Eclipse
+eclipse {
+    // Set Multi-OS Engine nature
+    project {
+        natures 'org.multi-os-engine.project'
+    }
+}
