@@ -28,7 +28,7 @@ android {
     }
     viewBinding
             {enabled=true}
-    compileSdkVersion 32
+    compileSdkVersion 'android-Tiramisu'
     buildToolsVersion '32.0.0'
 }
 
@@ -43,6 +43,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
     implementation "com.google.android.material:material:1.5.0"
-    implementation group: 'org.multi-os-engine', name: 'moe-sdk', version: '1.8.2'
-
+    implementation group: 'org.multi-os-engine', name: 'moe-gradle', version: '1.4.4'
+    implementation ('io.reactivex:rxandroid:1.2.1')
 }
