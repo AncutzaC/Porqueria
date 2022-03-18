@@ -64,14 +64,14 @@ public class MainActivity2 extends AppCompatActivity {
 
         resultOfLabour.setText(
 
-                "Sex: " + addGender + "\n"+
-                        "Varsta: "+ addYears + " ani, " + addMonths + " luni;\n\n" +
+                "Sex: " + addGender + "\n" +
+                        "Varsta: " + addYears + " ani, " + addMonths + " luni;\n\n" +
                         "_____________________________________________\n"
                         + "Talia: " + addHeight + "cm\n" +
                         "* percentila: " + percentilaHeight + " pt varsta si sex (cf CDC, WHO);\n" +
                         "* " + zscoreHeightF + " DS pt varsta si sex (cf CDC, WHO);\n" +
                         "* " + zscoreHeightRo + "DS pt varsta si sex (cf standardelor franceze '97)\n\n" +
-                        "* Talie mama = "+ addHeightMother+ " cm, Talie tata = " +addHeightFather+" cm,\nTalia tinta = "+ getTaliaTinta() + " cm\n"+
+                        "* Talie mama = " + addHeightMother + " cm, Talie tata = " + addHeightFather + " cm,\nTalia tinta = " + getTaliaTinta() + " cm\n" +
                         "_____________________________________________\n" +
                         "Greutatea: " + addWeight + "kg\n" +
                         "* percentila: " + percentilaWeight + " pt varsta si sex (cf CDC, WHO);\n"
@@ -81,7 +81,7 @@ public class MainActivity2 extends AppCompatActivity {
                         "* S.c. = " + getDoubleNumber(getSuprafataCorporala()) + "mp;\n" +
                         "_____________________________________________\n" +
                         "IMC = " + imc + "kg/m2, zscore = " + zscoreIMC + ", percentila " + percentilaIMC + ";\n" +
-                        "Indice nutritional = " + getDoubleNumber(getIndiceNutritional()) +  getAnswerIN() + "\n" +
+                        "Indice nutritional = " + getDoubleNumber(getIndiceNutritional()) + getAnswerIN() + "\n" +
                         "Indice ponderal = " + getDoubleNumber(getIndicePonderal()) + getAnswerIP() + "\n" +
                         "_____________________________________________\n" +
                         "TA = " + Porqueria.addTAS + "/ " + addTAD + " mmHg;\n" +
@@ -102,19 +102,22 @@ public class MainActivity2 extends AppCompatActivity {
 
     public static double getDoubleNumber(double desiredNumber) {
         double bigDecimal2 = 0;
-        if (desiredNumber ==0 || Double.isInfinite(desiredNumber) || Double.isNaN(desiredNumber) )
-            {bigDecimal2 = 0;
-            return bigDecimal2;}
-        if (desiredNumber != 0){
-        BigDecimal bigDecimal = new BigDecimal(desiredNumber);
-        bigDecimal2 = bigDecimal.setScale(2, RoundingMode.HALF_UP).doubleValue();
-        }
+        if (desiredNumber == 0 || Double.isInfinite(desiredNumber) || Double.isNaN(desiredNumber)) {
+            bigDecimal2 = 0;
             return bigDecimal2;
+        }
+        if (desiredNumber != 0) {
+            BigDecimal bigDecimal = new BigDecimal(desiredNumber);
+            bigDecimal2 = bigDecimal.setScale(2, RoundingMode.HALF_UP).doubleValue();
+        }
+        return bigDecimal2;
     }
 
     public static double zScoreToPercentile(double zScore) {
-        double number =0;
-        if (zScore == 0){return number;}
+        double number = 0;
+        if (zScore == 0) {
+            return number;
+        }
         if (zScore != 0) {
             NormalDistribution dist = new NormalDistribution();
             number = dist.cumulativeProbability(zScore) * 100;
@@ -206,7 +209,7 @@ public class MainActivity2 extends AppCompatActivity {
             if (getIndicePonderal() <= 0.60 && getIndicePonderal() != 0) {
                 raspuns = ", malnutritie proteino-calorica grad III;";
             }
-            if (getIndicePonderal() ==0){
+            if (getIndicePonderal() == 0) {
                 raspuns = "";
             }
             return raspuns;
@@ -232,7 +235,7 @@ public class MainActivity2 extends AppCompatActivity {
             if (getIndiceNutritional() <= 0.70 && getIndiceNutritional() != 0) {
                 raspuns = ", malnutritie proteino-calorica grad III;";
             }
-            if (getIndiceNutritional() ==0){
+            if (getIndiceNutritional() == 0) {
                 raspuns = "";
             }
             return raspuns;
@@ -241,22 +244,23 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public double getSuprafataCorporala() {
-        if (addWeight == 0){return 0;}
-        else return (addWeight * 4 + 7) / (addWeight + 90);
-        }
+        if (addWeight == 0) {
+            return 0;
+        } else return (addWeight * 4 + 7) / (addWeight + 90);
+    }
 
-    public double getTaliaTinta(){
+    public double getTaliaTinta() {
         double taliaTinta = 0;
-        if (addGender.equals("Feminin")){
-                taliaTinta = (addHeightMother+addHeightFather-13)/2;
-            }
-        if (addGender.equals("Masculin")){
-                taliaTinta = (addHeightMother+addHeightFather+13)/2;
-            }
-        if (addHeightMother ==0 || addHeightFather ==0){
-                taliaTinta = 0;
-            }
-            return getDoubleNumber(taliaTinta);
+        if (addGender.equals("Feminin")) {
+            taliaTinta = (addHeightMother + addHeightFather - 13) / 2;
+        }
+        if (addGender.equals("Masculin")) {
+            taliaTinta = (addHeightMother + addHeightFather + 13) / 2;
+        }
+        if (addHeightMother == 0 || addHeightFather == 0) {
+            taliaTinta = 0;
+        }
+        return getDoubleNumber(taliaTinta);
     }
 
     static final class MyResult {
@@ -274,15 +278,19 @@ public class MainActivity2 extends AppCompatActivity {
         public String getFirst() {
             return String.valueOf(first);
         }
+
         public int getSecond() {
             return second;
         }
+
         public int getThird() {
             return third;
         }
+
         public int getForth() {
             return forth;
         }
+
         public int getFifth() {
             return fifth;
         }
@@ -292,7 +300,7 @@ public class MainActivity2 extends AppCompatActivity {
     // interval of percentiles: 0, 5, 10, 25, 50, 75, 90, 95, 100
     public int getIntervalPercentileForHeight() {
         boolean b = true;
-        int pH1=0;
+        int pH1 = 0;
         List<Integer> listPercentileHeight = Arrays.asList(0, 5, 10, 25, 50, 75, 90, 95, 100);
         for (int k = 0; k < listPercentileHeight.size(); k++) {
             if (getDoubleNumber(zScoreToPercentile((zscoreHeight))) <= listPercentileHeight.get(k) && b) {
@@ -304,9 +312,9 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     // gets the apropriate list in fonction to the gender
-    private ArrayList getList(){
+    private ArrayList getList() {
         ArrayList<String> list = new ArrayList<String>();
-        if (addGender.equals("Feminin")){
+        if (addGender.equals("Feminin")) {
             list.addAll(Porqueria.listPercentileTAF);
         } else list.addAll(Porqueria.listPercentileTAM);
         return list;
@@ -314,11 +322,11 @@ public class MainActivity2 extends AppCompatActivity {
 
     // get the percentile TAS for a given TA (for Feminine or Masculine)
     // value - if 0 then outputs TAS values, if 8 then outputs TAD values
-    public MyResult getPercentileTAGeneral(int addTA, int value){
+    public MyResult getPercentileTAGeneral(int addTA, int value) {
         int percentila50 = 0, percentila90 = 0, percentila95 = 0, percentila99 = 0;
         double percentilaTAmax, percentilaTAmin;
         String percentilaTA = null;
-        boolean c=true;
+        boolean c = true;
         int pH1 = getIntervalPercentileForHeight() + 1 + value;
         //if no TA is introduced, returns 0
         if (addTA == 0) return new MyResult("0", 0, 0, 0, 0);
@@ -327,31 +335,31 @@ public class MainActivity2 extends AppCompatActivity {
         list.addAll(getList());
         //finding the percentile values
         for (int i = 0; i < list.size(); i += 61) {
-                if (Integer.parseInt(list.get(i)) == addYears) {
-                    for (int j = i + 1 + pH1; j < i + 61; j += 15) {
-                        percentila50 = Integer.parseInt(list.get(i + pH1 + 1));
-                        percentila90 = Integer.parseInt(list.get(i + pH1 + 16));
-                        percentila95 = Integer.parseInt(list.get(i + pH1 + 31));
-                        percentila99 = Integer.parseInt(list.get(i + pH1 + 46));
+            if (Integer.parseInt(list.get(i)) == addYears) {
+                for (int j = i + 1 + pH1; j < i + 61; j += 15) {
+                    percentila50 = Integer.parseInt(list.get(i + pH1 + 1));
+                    percentila90 = Integer.parseInt(list.get(i + pH1 + 16));
+                    percentila95 = Integer.parseInt(list.get(i + pH1 + 31));
+                    percentila99 = Integer.parseInt(list.get(i + pH1 + 46));
 
-                        if (addTA < Integer.parseInt(list.get(j)) && c) {
-                            percentilaTAmax = Double.parseDouble(list.get(j - pH1));
-                            c = false;
-                            percentilaTA = "<50th";
-                        } else if (addTA >= Integer.parseInt(list.get(j)) &&
-                                addTA <= Integer.parseInt(list.get(j + 15)) && c) {
-                            percentilaTAmin = Integer.parseInt(list.get(j - pH1));
-                            percentilaTAmax = Integer.parseInt(list.get(j - pH1 + 15));
-                            c = false;
-                            percentilaTA = percentilaTAmin + " - " + percentilaTAmax;
+                    if (addTA < Integer.parseInt(list.get(j)) && c) {
+                        percentilaTAmax = Double.parseDouble(list.get(j - pH1));
+                        c = false;
+                        percentilaTA = "<50th";
+                    } else if (addTA >= Integer.parseInt(list.get(j)) &&
+                            addTA <= Integer.parseInt(list.get(j + 15)) && c) {
+                        percentilaTAmin = Integer.parseInt(list.get(j - pH1));
+                        percentilaTAmax = Integer.parseInt(list.get(j - pH1 + 15));
+                        c = false;
+                        percentilaTA = percentilaTAmin + " - " + percentilaTAmax;
 
-                        } else if (addTA >= Integer.parseInt(list.get(j + 42 + pH1)) && c) {
-                            percentilaTA = "> 99th";
-                            c = false;
-                        }
+                    } else if (addTA >= Integer.parseInt(list.get(j + 42 + pH1)) && c) {
+                        percentilaTA = "> 99th";
+                        c = false;
                     }
                 }
             }
-        return new MyResult(percentilaTA, percentila50, percentila90, percentila95, percentila99);
         }
+        return new MyResult(percentilaTA, percentila50, percentila90, percentila95, percentila99);
+    }
 }

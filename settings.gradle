@@ -9,7 +9,4 @@ dependencyResolutionManagement {
 rootProject.name = "Porqueria"
 include ':app'
 
-include ':ios'
-include ':common'
 
-include ':common'

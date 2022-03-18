@@ -22,7 +22,4 @@ public class Porqueria extends Application {
     public static List<String> listPercentileTAF, listPercentileTAM;
 
 
-
-
-
 }
