@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Porqueria</string>
+    <string name="modifica_limba">Langue</string>
+    <string name="Introdu_varsta">Age</string>
+    <string name="ani_0_18">ans (0-18)</string>
+    <string name="luni_0_11">mois (0-11)</string>
+    <string name="introdu_talia_in_cm">Taille (en cm)</string>
+    <string name="talia_max_210">taille (max 210)</string>
+    <string name="introdu_greutatea_in_kg">Poids (en kg)</string>
+    <string name="greutate_max_150">poids (max 150)</string>
+    <string name="selecteaza_sexul_genetic">Choisir le sexe</string>
+    <string name="feminin">Féminin</string>
+    <string name="masculin">Masculin</string>
+    <string name="tas_mmhg">TAS (mmHg)</string>
+    <string name="tas_max_250">TAS (max 250)</string>
+    <string name="tad_mmhg">TAD (mmHg)</string>
+    <string name="tad_max_250">TAD (max 250)</string>
+    <string name="perimetru_cranian_in_cm">Périmètre crânien "\n"(en cm)</string>
+    <string name="perimetru_max_60">périmètre (max 60)</string>
+    <string name="greutate_la_nastere_in_grame">Poids à la naissance (en grams)</string>
+    <string name="greutate_la_nastere_max_6000">poids à la naissance (max 6000)</string>
+    <string name="talia_tatalui">taille du père</string>
+    <string name="talia_mamei">taille de la mère</string>
+    <string name="talia_parintilor_in_cm">Taille des parents</string>
+    <string name="calculeaza_whatever">Calculer</string>
+    <string name="reset">Reinitialisation</string>
+    <string name="sex">Sexe </string>
+    <string name="age">Age </string>
+    <string name="years"> ans </string>
+    <string name="months"> mois</string>
+    <string name="Talia">Taille: </string>
+    <string name="percentila">* percentile: </string>
+    <string name="varstaSisex"> pour âge et sexe (selon CDC, WHO);</string>
+    <string name="DSptVarstaSex"> DS pour âge et sexe (selon CDC, WHO);</string>
+    <string name="DSptVarstaSexFr">DS pour âge et sexe (selon les normes françaises de 1997)</string>
+    <string name="TaliaMamei">* Taille de la mère = "</string>
+    <string name="HeightFather"> cm, Taille du père = </string>
+    <string name="ExpectedHeight">Taille cible = </string>
+    <string name="Weight">Poids: "</string>
+    <string name="WeightAccordingHeight"> Poids pour la taille: </string>
+    <string name="SC">* S.c. = </string>
+    <string name="mp">m2;</string>
+    <string name="AccordingFrenchStandards"> selon les normes françaises de 1997; -->> </string>
+    <string name="IMC">IMC = </string>
+    <string name="Percentile2">, percentile </string>
+    <string name="NutritionalIndice">Indice nutritionnel = </string>
+    <string name="PonderalIndice">Indice pondéral = </string>
+    <string name="BP">TA = </string>
+    <string name="BPpercentile">* p TAS selon l"'"âge, la taille et le sexe: </string>
+    <string name="BPdPercentile">* p TAD selon l"'"âge, la taille et le sexe: </string>
+    <string name="p50">-> p50= </string>
+    <string name="p90">-> p90= </string>
+    <string name="p95">-> p95= </string>
+    <string name="p99">-> p99= </string>
+    <string name="headCircumference">PC = </string>
+    <string name="finalStatement">Selon CDC pour les enfants moins de 2 ans et selon WHO pour les enfants entre 2 et 20 ans.</string>
+    <string name="greutate_talie_sex"> poids pour la taille et le sexe </string>
+    <string name="malnutritieIII">, malnutrition protéino-énergétique sévère;</string>
+    <string name="malnutritieII">, malnutrition protéino-énergétique modérée;</string>
+    <string name="malnutritieI">, malnutrition protéino-énergétique légère;</string>
+    <string name="eutrofic">, enfant eutrophe;</string>
+    <string name="paratrofic">, enfant paratrophique;</string>
+</resources>

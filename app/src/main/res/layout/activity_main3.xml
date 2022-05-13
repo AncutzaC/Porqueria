@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity3">
+
+
+    <Button
+        android:id="@+id/button_height_and_weight_percentile"
+        android:layout_width="324dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="31dp"
+        android:background="@drawable/borderless_button"
+        android:backgroundTint="#FD3E2D"
+        android:text="Talie si greutate,\n varsta, sex"
+        android:textAllCaps="false"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_weight_for_height_percentile"
+        android:layout_width="314dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="31dp"
+        android:background="@drawable/borderless_button"
+        android:backgroundTint="#FFEB3B"
+        android:text="Greutate in functie de\n talie, varsta, sex"
+        android:textAllCaps="false"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_height_and_weight_percentile" />
+
+
+    <Button
+        android:id="@+id/button_PC_percentile"
+        android:layout_width="323dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="31dp"
+        android:background="@drawable/borderless_button"
+        android:backgroundTint="#8BC34A"
+        android:text="Perimetrul cranian"
+        android:textAllCaps="false"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_weight_for_height_percentile" />
+
+    <Button
+        android:id="@+id/button_IMC_percentile"
+        android:layout_width="318dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="31dp"
+        android:background="@drawable/borderless_button"
+        android:backgroundTint="#00BCD4"
+        android:text="IMC"
+        android:textAllCaps="false"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_PC_percentile" />
+
+    <Button
+        android:id="@+id/back1"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/borderless_button"
+        android:backgroundTint="#9254FF"
+        android:text="Inapoi"
+
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_IMC_percentile" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="334dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:text="Genereaza percentilele specifice"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

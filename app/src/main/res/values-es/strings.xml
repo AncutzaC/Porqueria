@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Porqueria</string>
+    <string name="modifica_limba">Lengua</string>
+    <string name="Introdu_varsta">Edad</string>
+    <string name="ani_0_18">años (0-18)</string>
+    <string name="luni_0_11">meses (0-11)</string>
+    <string name="introdu_talia_in_cm">Altura (en cm)</string>
+    <string name="talia_max_210">altura (max 210)</string>
+    <string name="introdu_greutatea_in_kg">Peso (en kg)</string>
+    <string name="greutate_max_150">peso (max 150)</string>
+    <string name="selecteaza_sexul_genetic">Seleccione el sexo</string>
+    <string name="feminin">Femenina</string>
+    <string name="masculin">Masculino</string>
+    <string name="tas_mmhg">TAS (mmHg)</string>
+    <string name="tas_max_250">TAS (max 250)</string>
+    <string name="tad_mmhg">TAD (mmHg)</string>
+    <string name="tad_max_250">TAD (max 250)</string>
+    <string name="perimetru_cranian_in_cm">Perímetro craneano (en cm)</string>
+    <string name="perimetru_max_60">perímetro (max 60)</string>
+    <string name="greutate_la_nastere_in_grame">Peso al nacer "\n"(en gramos)</string>
+    <string name="greutate_la_nastere_max_6000">peso al nacer (max 6000)</string>
+    <string name="talia_tatalui">altura del padre</string>
+    <string name="talia_mamei">altura de la madre</string>
+    <string name="talia_parintilor_in_cm">Altura de los padres (en cm)</string>
+    <string name="calculeaza_whatever">Calcula whatever</string>
+    <string name="reset">Reiniciar</string>
+    <string name="sex">Sexo: </string>
+    <string name="age">Edad: </string>
+    <string name="years"> años </string>
+    <string name="months"> meses</string>
+    <string name="Talia">Altura: </string>
+    <string name="percentila">* percentil: </string>
+    <string name="varstaSisex"> por edad y sexo (conforme a CDC, WHO);</string>
+    <string name="DSptVarstaSex"> DS por edad y sexo (conforme a CDC, WHO);</string>
+    <string name="DSptVarstaSexFr">DS por edad y sexo (conforme a las normas francesas de 1997)</string>
+    <string name="greutate_talie_sex">peso para l"'"edad et le sexo</string>
+    <string name="malnutritieIII">, desnutrición proteico-calórica grado III;</string>
+    <string name="malnutritieII">, desnutrición proteico-calórica grado II;</string>
+    <string name="malnutritieI">, desnutrición proteico-calórica grado I;</string>
+    <string name="eutrofic">, niño eutrófico;</string>
+    <string name="paratrofic">, niño paratrófico;</string>
+    <string name="TaliaMamei">* Altura de la madre = </string>
+    <string name="HeightFather"> cm, Altura del padre = </string>
+    <string name="ExpectedHeight">Altura objetivo = </string>
+    <string name="Weight">Peso: "</string>
+    <string name="WeightAccordingHeight"> Peso para altura: </string>
+    <string name="SC">* S.c. = </string>
+    <string name="mp">m2;</string>
+    <string name="AccordingFrenchStandards">conforme a las normas francesas de 1997; -->> </string>
+    <string name="IMC">IMC = </string>
+    <string name="Percentile2">, percentil </string>
+    <string name="NutritionalIndice">Indice nutricional = </string>
+    <string name="PonderalIndice">Indice de peso = </string>
+    <string name="BP">PA = </string>
+    <string name="BPpercentile">* pPAS para la edad y el sexo: </string>
+    <string name="BPdPercentile">* pPAD para la edad y el sexo: </string>
+    <string name="p50">-> p50= </string>
+    <string name="p90">-> p90= </string>
+    <string name="p95">-> p95= </string>
+    <string name="p99">-> p99= </string>
+    <string name="headCircumference">PC = </string>
+    <string name="finalStatement">Según CDC para niños menores de 2 años y según OMS de 2 a 20 años.</string>
+
+</resources>
