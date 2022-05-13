@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,14 +18,14 @@
         tools:context=".MainActivity"
         tools:ignore="ExtraText">
 
-
         <TextView
             android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_width="94dp"
+            android:layout_height="21dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
-            android:text="\nIntrodu varsta"
+            android:layout_marginTop="16dp"
+            android:text="@string/Introdu_varsta"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,9 +34,9 @@
             android:layout_width="104dp"
             android:layout_height="44dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="ani (0-18)"
+            android:hint="@string/ani_0_18"
             android:inputType="number"
             android:textAlignment="center"
             android:textSize="14sp"
@@ -49,58 +48,103 @@
             android:layout_width="96dp"
             android:layout_height="44dp"
             android:layout_marginStart="13dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="63dp"
             android:ems="10"
-            android:hint="luni (0-11)"
+            android:hint="@string/luni_0_11"
             android:inputType="numberDecimal"
             android:textAlignment="center"
+            android:textColorHint="#546E7A"
             android:textSize="14dp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/addYears"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="43dp"
+            android:id="@+id/birthdata1"
+            android:layout_width="32dp"
+            android:layout_height="20dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:text="Introdu talia\n(in cm)"
+            android:layout_marginTop="28dp"
+            android:text="sau"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+        <Button
+            android:id="@+id/birthdaydata"
+            android:layout_width="166dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/borderless_button"
+            android:text="Selecteaza data nasterii"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addYears" />
+
+        <TextView
+            android:id="@+id/birthdayresult"
+            android:layout_width="125dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@+id/birthdaydata"
+            app:layout_constraintTop_toBottomOf="@+id/addYears" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="133dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:ellipsize="none"
+            android:scrollHorizontally="false"
+            android:text="@string/introdu_talia_in_cm"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birthdaydata" />
+
         <EditText
             android:id="@+id/addHeight"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_width="168dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
             android:ems="10"
-            android:hint="talia (max 210)"
+            android:hint="@string/talia_max_210"
             android:inputType="numberDecimal"
             android:textAlignment="center"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/addYears" />
+            app:layout_constraintTop_toBottomOf="@+id/birthdaydata" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="0dp"
+            android:layout_width="124dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:text="Introdu greutatea\n(in kg)"
+            android:layout_marginTop="24dp"
+            android:text="@string/introdu_greutatea_in_kg"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <EditText
             android:id="@+id/addWeight"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_width="167dp"
+            android:layout_height="39dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="greutate (max 150)"
+            android:hint="@string/greutate_max_150"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:textAlignment="center"
@@ -114,7 +158,8 @@
             android:layout_height="51dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
-            android:text="Selecteaza sexul genetic :)"
+            android:text="@string/selecteaza_sexul_genetic"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -122,35 +167,39 @@
             android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="43dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/addWeight">
 
             <RadioButton
                 android:id="@+id/checkFemale"
-                android:layout_width="83dp"
+                android:layout_width="87dp"
                 android:layout_height="36dp"
                 android:checked="true"
-                android:text="Feminin"
-                android:textSize="12dp" />
+                android:text="@string/feminin"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
             <RadioButton
                 android:id="@+id/checkMale"
-                android:layout_width="89dp"
+                android:layout_width="93dp"
                 android:layout_height="36dp"
                 android:checked="false"
-                android:text="Masculin"
+                android:text="@string/masculin"
+                android:textColor="@color/black"
                 android:textSize="12dp" />
         </RadioGroup>
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="0dp"
-            android:layout_height="39dp"
+            android:layout_width="60dp"
+            android:layout_height="38dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:text="TAS\n(mmHg)"
+            android:layout_marginTop="8dp"
+            android:text="@string/tas_mmhg"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -158,22 +207,24 @@
             android:id="@+id/addTAS"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="TAS (max 250)"
-            android:textSize="14sp"
+            android:hint="@string/tas_max_250"
             android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView6"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView7"
-            android:layout_width="62dp"
+            android:layout_width="60dp"
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text=" TAD\n(mmHg)"
+            android:text="@string/tad_mmhg"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -184,7 +235,8 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="4dp"
             android:ems="10"
-            android:hint="TAD (max 250)"
+            android:hint="@string/tad_max_250"
+            android:textAlignment="center"
             android:inputType="number"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -192,35 +244,38 @@
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_width="138dp"
+            android:layout_height="37dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="27dp"
-            android:text="Perimetru cranian\n(in cm)"
+            android:layout_marginTop="12dp"
+            android:text="@string/perimetru_cranian_in_cm"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addTAD" />
 
         <EditText
             android:id="@+id/addPerimeter"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="155dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
             android:ems="10"
-            android:hint="perimetru (max 60)"
+            android:hint="@string/perimetru_max_60"
+            android:textAlignment="center"
             android:inputType="number"
-            android:textSize="14sp"
             android:minHeight="48dp"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/addTAD" />
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_width="132dp"
+            android:layout_height="39dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="29dp"
-            android:text="Greutate la nastere\n(in grame)"
+            android:layout_marginTop="20dp"
+            android:text="@string/greutate_la_nastere_in_grame"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -229,23 +284,25 @@
             android:layout_width="210dp"
             android:layout_height="44dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="greutate la nastere (max 6000)"
+            android:hint="@string/greutate_la_nastere_max_6000"
+            android:textAlignment="center"
             android:inputType="number"
             android:minHeight="48dp"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toBottomOf="@+id/addPerimeter" />
 
+
         <EditText
             android:id="@+id/addHeight3"
-            android:layout_width="108dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="125dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
-            android:hint="talia tatalui"
+            android:hint="@string/talia_tatalui"
             android:inputType="numberDecimal"
             android:textAlignment="center"
             android:textSize="14sp"
@@ -254,40 +311,41 @@
 
         <EditText
             android:id="@+id/addHeight2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="126dp"
+            android:layout_height="39dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="164dp"
             android:ems="10"
-            android:hint="talia mamei"
+            android:hint="@string/talia_mamei"
             android:inputType="numberDecimal"
             android:textAlignment="center"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/addBirthWeight" />
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="0dp"
+            android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:text="Talia parintilor\n(in cm)"
+            android:layout_marginTop="16dp"
+            android:text="@string/talia_parintilor_in_cm"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
 
         <Button
             android:id="@+id/calculateWhatever"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="11dp"
             android:background="@drawable/rect_rounded_button_pink"
-            android:text="   Calculeaza whatever   "
+            android:text="@string/calculeaza_whatever"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -299,12 +357,31 @@
             android:id="@+id/resetButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Reset"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="11dp"
             android:background="@drawable/rect_rounded_button"
+            android:text="@string/reset"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calculateWhatever" />
+
+        <Button
+            android:id="@+id/changeLanguageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="11dp"
+            android:background="@drawable/rect_rounded_button_blue"
+            android:text="@string/modifica_limba"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resetButton" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

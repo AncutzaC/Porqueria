@@ -3,130 +3,240 @@ package com.example.porqueria;
 import static com.example.porqueria.MainActivity2.getDoubleNumber;
 import static com.example.porqueria.Porqueria.addGender;
 import static com.example.porqueria.Porqueria.addIMC;
+import static com.example.porqueria.Porqueria.addTAS;
 import static com.example.porqueria.Porqueria.addTotalMonths;
+import static com.example.porqueria.Porqueria.addYears;
+import static com.example.porqueria.Porqueria.birthdayresultGlobal;
 import static java.lang.String.valueOf;
 
+import android.app.DatePickerDialog;
+import org.joda.time.Period;
+import org.joda.time.PeriodType;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputFilter;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button resetButton, calculateWhatever;
+    private Button resetButton, calculateWhatever, changeLanguage, birthdaydata;
     private EditText addYears, addMonths, addWeight, addHeight, addTAS, addTAD, addPerimeter,
             addBirthWeight, addHeightMother, addHeightFather;
+    private TextView birthdayresult;
     private RadioButton checkFemale, checkMale, gender;
     private RadioGroup radioGroup;
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year;
+    private int month;
+    private int day;
+    DatePickerDialog.OnDateSetListener dateSetListener;
 
     protected Porqueria app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_main);
-
-        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
-        View inflatedView = layoutInflater.inflate(R.layout.activity_main, null);
-        setContentView(inflatedView);
-
 
         // import variables from xml and set boundaries
         calculateWhatever = findViewById(R.id.calculateWhatever);
         resetButton = findViewById(R.id.resetButton);
+        changeLanguage = findViewById(R.id.changeLanguageButton);
+        changeLanguage.setOnClickListener(view -> {
+            //show AlertDialog to display list of languages, one can be selected
+            showChangeLanguageDialog();
+        });
+
+        // import button
+        birthdaydata = findViewById(R.id.birthdaydata);
+        birthdayresult = findViewById(R.id.birthdayresult);
+
+        // import buttons
+        // set min and max for each category
 
         addYears = findViewById(R.id.addYears);
-        EditText et = (EditText) addYears;
+        EditText et = addYears;
         et.setFilters(new InputFilter[]{new InputFilterMinMax("0", "18")});
 
         addMonths = findViewById(R.id.addMonths);
-        EditText et1 = (EditText) addMonths;
+        EditText et1 = addMonths;
         et1.setFilters(new InputFilter[]{new InputFilterMinMax("0", "11")});
 
         addWeight = findViewById(R.id.addWeight);
-        EditText et2 = (EditText) addWeight;
+        EditText et2 = addWeight;
         et2.setFilters(new InputFilter[]{new InputFilterMinMax("0", "150")});
 
         addHeight = findViewById(R.id.addHeight);
-        EditText et3 = (EditText) addHeight;
+        EditText et3 = addHeight;
         et3.setFilters(new InputFilter[]{new InputFilterMinMax("0", "210")});
 
         addTAS = findViewById(R.id.addTAS);
-        EditText et4 = (EditText) addTAS;
+        EditText et4 = addTAS;
         et4.setFilters(new InputFilter[]{new InputFilterMinMax("0", "250")});
 
         addTAD = findViewById(R.id.addTAD);
-        EditText et5 = (EditText) addTAD;
+        EditText et5 = addTAD;
         et5.setFilters(new InputFilter[]{new InputFilterMinMax("0", "250")});
 
         addPerimeter = findViewById(R.id.addPerimeter);
-        EditText et6 = (EditText) addPerimeter;
+        EditText et6 = addPerimeter;
         et6.setFilters(new InputFilter[]{new InputFilterMinMax("0", "60")});
 
         addBirthWeight = findViewById(R.id.addBirthWeight);
-        EditText et7 = (EditText) addBirthWeight;
+        EditText et7 = addBirthWeight;
         et7.setFilters(new InputFilter[]{new InputFilterMinMax("0", "6000")});
 
         addHeightMother = findViewById(R.id.addHeight2);
-        EditText et8 = (EditText) addHeightMother;
+        EditText et8 = addHeightMother;
         et8.setFilters(new InputFilter[]{new InputFilterMinMax("0", "200")});
 
         addHeightFather = findViewById(R.id.addHeight3);
-        EditText et9 = (EditText) addHeightFather;
+        EditText et9 = addHeightFather;
         et9.setFilters(new InputFilter[]{new InputFilterMinMax("0", "200")});
 
         checkFemale = findViewById(R.id.checkFemale);
         checkMale = findViewById(R.id.checkMale);
         radioGroup = findViewById(R.id.radioGroup);
 
-        //add functionality to the buttons
 
-        calculateWhatever.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    openActivity2();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        //add functionality to the buttons
+        // selecting birthday date and returning it to birthdayresult
+        birthdaydata.setOnClickListener(view -> {
+            calendar = Calendar.getInstance();
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            // to set the current date as by default
+            String date = simpleDateFormat.format(Calendar.getInstance().getTime());
+
+            // action to be performed when birthdaydata button is clicked
+            birthdaydata.setOnClickListener(view1 -> {
+                // date picker dialog is used and its style and color are also passed
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, dateSetListener, year, month, day);
+                // to set background for datepicker
+                datePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            });
+
+            // it is used to set the date which user selects
+            dateSetListener = (view12, year, month, day) -> {
+                // here month+1 is used so that actual month number can be displayed,
+                // otherwise it starts from 0 and it shows 1 number less for every month;
+                // example- for january month=0
+                month = month + 1;
+                String date1 = day + "/" + month + "/" + year;
+                birthdayresult.setText(date1);
+                Porqueria.birthdayresultGlobal = birthdayresult.getText().toString();
+            };
+        });
+
+
+        calculateWhatever.setOnClickListener(view -> {
+            try {
+                openActivity2();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addYears.setText("");
-                addMonths.setText("");
-                addHeight.setText("");
-                addWeight.setText("");
-                addTAS.setText("");
-                addTAD.setText("");
-                addPerimeter.setText("");
-                addBirthWeight.setText("");
-                addHeightMother.setText("");
-                addHeightFather.setText("");
-            }
+        resetButton.setOnClickListener(view -> {
+            addYears.setText("");
+            addMonths.setText("");
+            addHeight.setText("");
+            addWeight.setText("");
+            addTAS.setText("");
+            addTAD.setText("");
+            addPerimeter.setText("");
+            addBirthWeight.setText("");
+            addHeightMother.setText("");
+            addHeightFather.setText("");
+            birthdayresult.setText("");
         });
 
         app = (Porqueria) getApplication();
 
+    }
 
+    private void showChangeLanguageDialog() {
+        // array of languages to display in alert display
+        final String[] listItem = {"Romana", "English", "Francais", "Español"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Choose language: ");
+        builder.setSingleChoiceItems(listItem, -1, (dialogInterface, i) -> {
+            if (i == 0) {
+                setLocale("ro");
+                recreate();
+            }
+            if (i == 1) {
+                setLocale("en");
+                recreate();
+            }
+            if (i == 2) {
+                setLocale("fr");
+                recreate();
+            }
+
+            if (i == 3) {
+                setLocale("es");
+                recreate();
+            }
+            // dismiss alert dialog when language selected
+            dialogInterface.dismiss();
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
+
+        // save data to shared preferences
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language saved in shared preferences
+    public void loadLocale() {
+        SharedPreferences preferences = getSharedPreferences("Settings", MainActivity.MODE_PRIVATE);
+        String language = preferences.getString("My_Lang", "");
+        setLocale(language);
     }
 
     // metoda care deschide fereastra 2 si transmite datele din fereastra 1 in fereastra 2
@@ -137,11 +247,32 @@ public class MainActivity extends AppCompatActivity {
 
         if (Objects.requireNonNull(addYears.getText()).toString().trim().isEmpty())
             addYears.setText("0");
-        Porqueria.addYears = Integer.parseInt(addYears.getText().toString());
-
         if (Objects.requireNonNull(addMonths.getText()).toString().trim().isEmpty())
             addMonths.setText("0");
-        Porqueria.addMonths = Integer.parseInt(addMonths.getText().toString());
+
+
+        //get month and year from calendar
+        // code for calculating age from hand input or date selection
+        MainActivity mainActivity = new MainActivity();
+        MainActivity.DateSelector dateSelector = mainActivity.getDateFromCalendar();
+
+        int tempYears = Integer.parseInt(addYears.getText().toString());
+        int tempMonths = Integer.parseInt(addMonths.getText().toString());
+
+        Porqueria.addYears = tempYears;
+        Porqueria.addMonths = tempMonths;
+        Porqueria.addTotalMonths = (tempYears *12)+tempMonths;
+
+        if (tempYears == 0 && tempMonths == 0 && dateSelector.yearsCalendar!= 0) {
+                Porqueria.addTotalMonths = (dateSelector.yearsCalendar * 12) + dateSelector.monthsCalendar;
+                Porqueria.addYears = dateSelector.yearsCalendar;
+                Porqueria.addMonths = dateSelector.monthsCalendar;
+            }
+            else if (0 == tempYears && tempMonths == 0 && dateSelector.monthsCalendar == 0) {
+                addTotalMonths=0;
+                Porqueria.addYears=0;
+                Porqueria.addMonths=0;
+            }
 
         if (Objects.requireNonNull(addHeight.getText()).toString().trim().isEmpty())
             addHeight.setText("0");
@@ -176,14 +307,14 @@ public class MainActivity extends AppCompatActivity {
         Porqueria.addHeightFather = Double.parseDouble(addHeightFather.getText().toString());
 
         //preparing parameters
+
         addGender = gender.getText().toString();
-        addTotalMonths = (Porqueria.addYears * 12) + Porqueria.addMonths;
+
         Porqueria.addIMC = (Porqueria.addWeight * 10000) / (Porqueria.addHeight * Porqueria.addHeight);
 
         Porqueria.zscoreHeightRo = getZscoreHeightRo();
         Porqueria.procentWeightToHeightRo = getProcentWeightToHeightRo();
         Porqueria.greutateaCorespunzatoareTalieiPacientului = getGreutateCorespunzatoareTalieiPacientului();
-
 
         // saving the lists in the Porqueria class
         Porqueria.listPercentilePC = getList("listPercentilePC");
@@ -206,9 +337,9 @@ public class MainActivity extends AppCompatActivity {
                 getZscoreGeneral(addIMC, Porqueria.listHeightForAge));
 
         Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-
         startActivity(intent);
     }
+
 
     // code for accessing the .txt from the assets
     private ArrayList<String> getList(String filename) throws IOException {
@@ -226,16 +357,19 @@ public class MainActivity extends AppCompatActivity {
     public int getGenderNumbers() {
         int gen;
         if ("Feminin" == Porqueria.addGender) {
-            gen = 2;
+            Porqueria.gen = 2;
         } else {
-            gen = 1;
+            Porqueria.gen = 1;
         }
-        return gen;
+        return Porqueria.gen;
     }
 
     // calculating the z-score using L, M, S for a maximal age - CDC and WHO standards
     public double getZscoreWithMaximalAge(double addVariable, ArrayList<String> list, int maximalAge) {
         double zscoreH = 0;
+        if (addVariable == 0) {
+            zscoreH = 0;
+        }
         if (addTotalMonths <= maximalAge) {
             for (int i = 1; i < list.size() - 3; i += 5) {
                 if (Integer.parseInt(list.get(i)) == addTotalMonths && Integer.parseInt(list.get(i - 1)) == getGenderNumbers()) {
@@ -246,25 +380,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        if (addVariable == 0) {
+        if (addTotalMonths > maximalAge) {
             zscoreH = 0;
-        }
-        if (addTotalMonths > maximalAge && getGenderNumbers() == 1) {
-            for (int i = 1; i < list.size() - 3; i += 5) {
-                if (Integer.parseInt(list.get(i - 1)) == 1 && Integer.parseInt(list.get(i + 4)) == 2) {
-                    double M = Double.parseDouble(list.get(i + 1));
-                    double L = Double.parseDouble(list.get(i + 2));
-                    double S = Double.parseDouble(list.get(i + 3));
-                    return zscoreH = (Math.pow((addVariable / M), L) - 1) / (L * S);
-                }
-            }
-        } else {
-            for (int i = 1; i < list.size(); i++) {
-                double M = Double.parseDouble(list.get(list.size() - 3));
-                double L = Double.parseDouble(list.get(list.size() - 2));
-                double S = Double.parseDouble(list.get(list.size() - 1));
-                return zscoreH = (Math.pow((addVariable / M), L) - 1) / (L * S);
-            }
         }
         return zscoreH;
     }
@@ -272,6 +389,9 @@ public class MainActivity extends AppCompatActivity {
     // calculating the z-score using L, M, S - CDC and WHO standards
     public double getZscoreGeneral(double addVariable, ArrayList<String> list) {
         double zscoreH = 0;
+        if (addVariable == 0) {
+            zscoreH = 0;
+        }
         for (int i = 1; i < list.size() - 3; i += 5) {
             if (Integer.parseInt(list.get(i)) == addTotalMonths && Integer.parseInt(list.get(i - 1)) == getGenderNumbers()) {
                 double L = Double.parseDouble(list.get(i + 1));
@@ -279,9 +399,6 @@ public class MainActivity extends AppCompatActivity {
                 double S = Double.parseDouble(list.get(i + 3));
                 zscoreH = (Math.pow((addVariable / M), L) - 1) / (L * S);
             }
-        }
-        if (addVariable == 0) {
-            zscoreH = 0;
         }
         return zscoreH;
     }
@@ -339,6 +456,9 @@ public class MainActivity extends AppCompatActivity {
         double addHeight = Porqueria.addHeight;
         double addWeight = Porqueria.addWeight;
         int idx;
+        if (addHeight == 0 && addWeight == 0) {
+            procentWeightToHeightRo = 0;
+        }
         if (addGender.equals("Feminin")) {
             for (int j = 1; j < listHeightRo.size() - 12; j += 7) {
                 double talieTabel = Double.parseDouble((listHeightRo.get(j)));
@@ -386,7 +506,10 @@ public class MainActivity extends AppCompatActivity {
         double procentWeightToHeightRo = 0;
         String addGender = "Feminin";
         double addHeight = Porqueria.addHeight;
-        int idx = 0;
+        int idx;
+        if (addHeight == 0) {
+            procentWeightToHeightRo = 0;
+        }
         if ("Feminin" == addGender) {
             for (int j = 1; j < listHeightRo.size() - 12; j += 7) {
                 double talieTabel = Double.parseDouble((listHeightRo.get(j)));
@@ -394,33 +517,29 @@ public class MainActivity extends AppCompatActivity {
                 double greutateTabel = Double.parseDouble(valueOf(listHeightRo.get(j + 2)));
                 double greutateTabel2 = Double.parseDouble(valueOf(listHeightRo.get(j + 9)));
                 if (addHeight > talieTabel && addHeight < talieTabel2) {
-                    double greutateaCorespTalieiAprox = (addHeight - talieTabel) / ((talieTabel2 - talieTabel) / 6) *
+                    procentWeightToHeightRo = (addHeight - talieTabel) / ((talieTabel2 - talieTabel) / 6) *
                             ((greutateTabel2 - greutateTabel) / 6) + greutateTabel;
-                    procentWeightToHeightRo = greutateaCorespTalieiAprox;
                 }
                 if (addHeight == talieTabel) {
                     idx = j;
-                    double greutateaCorespTalieiAprox = Double.parseDouble(valueOf(listHeightRo.get(idx + 2)));
-                    procentWeightToHeightRo = greutateaCorespTalieiAprox;
+                    procentWeightToHeightRo = Double.parseDouble(valueOf(listHeightRo.get(idx + 2)));
                 }
 
             }
         }
-        if ("Masculin" == addGender) {
+        if ("Masculin".equals(addGender)) {
             for (int j = 4; j < listHeightRo.size() - 12; j += 7) {
                 double talieTabel = Double.parseDouble((listHeightRo.get(j)));
                 double talieTabel2 = Double.parseDouble(valueOf(listHeightRo.get(j + 7)));
                 double greutateTabel = Double.parseDouble(valueOf(listHeightRo.get(j + 2)));
                 double greutateTabel2 = Double.parseDouble(valueOf(listHeightRo.get(j + 9)));
                 if (addHeight > talieTabel && addHeight < talieTabel2) {
-                    double greutateaCorespTalieiAprox = (addHeight - talieTabel) / ((talieTabel2 - talieTabel) / 6) *
+                    procentWeightToHeightRo = (addHeight - talieTabel) / ((talieTabel2 - talieTabel) / 6) *
                             ((greutateTabel2 - greutateTabel) / 6) + greutateTabel;
-                    procentWeightToHeightRo = greutateaCorespTalieiAprox;
                 }
                 if (addHeight == talieTabel) {
                     idx = j;
-                    double greutateaCorespTalieiAprox = Double.parseDouble(valueOf(listHeightRo.get(idx + 2)));
-                    procentWeightToHeightRo = greutateaCorespTalieiAprox;
+                    procentWeightToHeightRo = Double.parseDouble(valueOf(listHeightRo.get(idx + 2)));
                 }
             }
         }
@@ -430,8 +549,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     static List<String> listHeightRo = Arrays.asList(
-            //    "0","49.06","1.8","3.28","50.2","2","3.39",
-
             "1", "52.40", "1.9", "3.75", "53.2", "2", "3.96",
             "2", "55.6", "2", "4.6", "56.70", "2.1", "4.9",
             "3", "58.3", "2", "5.35", "59.9", "2.2", "5.75",
@@ -516,6 +633,60 @@ public class MainActivity extends AppCompatActivity {
             "192", "162", "5.5", "52.1", "171", "6.2", "58.4",
             "198", "162.4", "5.5", "52.6", "172.4", "6", "60",
             "204", "162.6", "5.5", "53", "173.3", "5.9", "61.2");
+
+    static final class DateSelector {
+        private int yearsCalendar;
+        private int monthsCalendar;
+
+        public DateSelector(int yearsCalendar, int monthsCalendar) {
+            this.yearsCalendar = yearsCalendar;
+            this.monthsCalendar = monthsCalendar;
+        }
+        public int getYearsCalendar() {
+            return yearsCalendar;
+        }
+        public int getMonthsCalendar() {
+            return monthsCalendar;
+        }
+    }
+
+    public DateSelector getDateFromCalendar(){
+        int yearsCalendar = 0, monthsCalendar=0;
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("dd/MM/yyyy");
+        // converting the inputted date to string
+        String sDate = birthdayresultGlobal;
+        if (sDate == null){sDate = "00-00-0000";}
+        String eDate = simpleDateFormat1.format(Calendar.getInstance().getTime());
+
+        // converting it to date format
+        Date date1 = null;
+        try {
+            date1 = simpleDateFormat1.parse(sDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date date2 = null;
+        try {
+            date2 = simpleDateFormat1.parse(eDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long startdate;
+        long endDate;
+        assert date2 != null;
+        endDate = date2.getTime();
+        if (date1 == null) {
+            startdate = endDate;
+        } else startdate = date1.getTime();
+
+        // condition
+        if (startdate <= endDate) {
+            org.joda.time.Period period = new Period(startdate, endDate, PeriodType.yearMonthDay());
+            yearsCalendar = period.getYears();
+            monthsCalendar = period.getMonths();
+        }
+        return new DateSelector(yearsCalendar, monthsCalendar);
+    }
 
 }
 

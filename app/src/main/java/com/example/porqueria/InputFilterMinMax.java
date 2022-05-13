@@ -7,7 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InputFilterMinMax extends AppCompatActivity implements InputFilter {
 
-    private int min, max;
+    private final int min;
+    private final int max;
 
     public InputFilterMinMax(String min, String max) {
         this.min = Integer.parseInt(min);

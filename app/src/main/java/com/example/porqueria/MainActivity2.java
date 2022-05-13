@@ -17,6 +17,7 @@ import static com.example.porqueria.Porqueria.zscoreHeight;
 import static com.example.porqueria.Porqueria.zscorePC;
 import static com.example.porqueria.Porqueria.zscoreWeight;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -37,14 +38,25 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        //goes back to the first activity
+        TextView back=findViewById(R.id.back1);
+        back.setOnClickListener(v -> finish());
+
+        //goes further to the 3rd activity~ generate percentiles page
+        TextView generate_percentiles_button = findViewById(R.id.generate_percentiles_button);
+        generate_percentiles_button.setOnClickListener(view -> {
+                Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+                MainActivity2.this.startActivity(intent);
+        });
+
+        //calculating zscores
         double zscoreWeightF = getDoubleNumber(zscoreWeight);
         double zscoreHeightF = getDoubleNumber(zscoreHeight);
         double zscoreHeightRo = getDoubleNumber(Porqueria.zscoreHeightRo);
         double zscoreIMC = getDoubleNumber(Porqueria.zscoreIMC);
-        double zscorePC1 = getDoubleNumber(zscorePC);
         double imc = getDoubleNumber(getIMC());
 
-
+        //calculating percentiles
         double percentilaWeight = getDoubleNumber(zScoreToPercentile(zscoreWeightF));
         double percentilaHeight = getDoubleNumber(zScoreToPercentile(zscoreHeightF));
         double percentilaPC = getDoubleNumber(zScoreToPercentile(zscorePC));
@@ -55,47 +67,46 @@ public class MainActivity2 extends AppCompatActivity {
         // afisam percentilele de TAS si TAD
         MainActivity2 mainActivity2 = new MainActivity2();
         MyResult result = mainActivity2.getPercentileTAGeneral(addTAS, 0);
-        MyResult result1 = mainActivity2.getPercentileTAGeneral(addTAD, 8);
-
+        MyResult result1 = mainActivity2.getPercentileTAGeneral(addTAD, 7);
 
         //afisam rezultatele dorite (cele prelucrate)/*
-        TextView resultOfLabour = (TextView) findViewById(R.id.resultOfLabour);
-
+        TextView resultOfLabour = findViewById(R.id.resultOfLabour);
 
         resultOfLabour.setText(
 
-                "Sex: " + addGender + "\n" +
-                        "Varsta: " + addYears + " ani, " + addMonths + " luni;\n\n" +
-                        "_____________________________________________\n"
-                        + "Talia: " + addHeight + "cm\n" +
-                        "* percentila: " + percentilaHeight + " pt varsta si sex (cf CDC, WHO);\n" +
-                        "* " + zscoreHeightF + " DS pt varsta si sex (cf CDC, WHO);\n" +
-                        "* " + zscoreHeightRo + "DS pt varsta si sex (cf standardelor franceze '97)\n\n" +
-                        "* Talie mama = " + addHeightMother + " cm, Talie tata = " + addHeightFather + " cm,\nTalia tinta = " + getTaliaTinta() + " cm\n" +
-                        "_____________________________________________\n" +
-                        "Greutatea: " + addWeight + "kg\n" +
-                        "* percentila: " + percentilaWeight + " pt varsta si sex (cf CDC, WHO);\n"
-                        + "* " + zscoreWeight + " DS pt varsta si sex (cf CDC, WHO)\n" +
-                        "* " + procentWeightToHeightRo + " % " + getAnswer(procentWeightToHeightRo) + ", cf std franceze '97; -->> " +
-                        "Greutatea corespunzatoare taliei pacientului este: " + greutateaCorespunzatoareTalieiPacientului + " kg\n" +
-                        "* S.c. = " + getDoubleNumber(getSuprafataCorporala()) + "mp;\n" +
-                        "_____________________________________________\n" +
-                        "IMC = " + imc + "kg/m2, zscore = " + zscoreIMC + ", percentila " + percentilaIMC + ";\n" +
-                        "Indice nutritional = " + getDoubleNumber(getIndiceNutritional()) + getAnswerIN() + "\n" +
-                        "Indice ponderal = " + getDoubleNumber(getIndicePonderal()) + getAnswerIP() + "\n" +
-                        "_____________________________________________\n" +
-                        "TA = " + Porqueria.addTAS + "/ " + addTAD + " mmHg;\n" +
-                        "* p TAS coresp varstei si sexului este " + result.getFirst() + "; \n" +
-                        "* p TAD coresp varstei si sexului este " + result1.getFirst() + "; \n" +
-                        "-> p50= " + result.getSecond() + "/ " + result1.getSecond() + "; \n" +
-                        "-> p90= " + result.getThird() + "/ " + result1.getThird() + "; \n" +
-                        "-> p95= " + result.getForth() + "/ " + result1.getForth() + "; \n" +
-                        "-> p99= " + result.getFifth() + "/ " + result1.getFifth() + "." + ";\n" +
-                        "_____________________________________________\n" +
-                        "PC = " + addPerimeter + " cm, " + getDoubleNumber(zscorePC) + " DS, p" + getDoubleNumber(percentilaPC) + ";\n" +
-                        "_____________________________________________\n" +
-                        "\n\n\n\n\n\n" +
-                        "Conform CDC pt varsta sub 2 ani si conform WHO pt 2-20 ani.");
+                getString(R.string.sex)+": "+addGender+ "\n"+
+                getString(R.string.age)+": "+addYears +" "+getString(R.string.years)+", "+ addMonths +" "+ getString(R.string.months)+";"+
+                "\n_____________________________________________\n"
+                + getString(R.string.Talia)+" " + addHeight + " cm\n" +
+                getString(R.string.percentila)+" "+ percentilaHeight +" "+ getString(R.string.varstaSisex) +"\n"+
+                "* " + zscoreHeightF +" "+ getString(R.string.DSptVarstaSex) + "\n"+
+                "* " + zscoreHeightRo +" "+ getString(R.string.DSptVarstaSexFr) + "\n\n"+
+                getString(R.string.TaliaMamei) + addHeightMother + getString(R.string.HeightFather) + " "+addHeightFather + " cm,\n"+
+                getString(R.string.ExpectedHeight) +" "+ getTaliaTinta() + " cm" +
+                "\n_____________________________________________\n" +
+                getString(R.string.Weight) + addWeight + " kg\n" +
+                getString(R.string.percentila)+" "+ percentilaWeight +" "+ getString(R.string.varstaSisex) +"\n"+
+                "* " + zscoreWeight +" "+ getString(R.string.DSptVarstaSex) + "\n" +
+                "* " + procentWeightToHeightRo + " % " + getAnswer(procentWeightToHeightRo) +" "+ getString(R.string.AccordingFrenchStandards) +
+                getString(R.string.WeightAccordingHeight) + greutateaCorespunzatoareTalieiPacientului + " kg\n" +
+                getString(R.string.SC) + " "+ getDoubleNumber(getSuprafataCorporala()) +" "+ getString(R.string.mp) +
+                "\n_____________________________________________\n" +
+                getString(R.string.IMC) + " "+imc + "kg/m2, zscore = " + zscoreIMC + getString(R.string.Percentile2) + " "+percentilaIMC + ";\n" +
+                getString(R.string.NutritionalIndice) +" "+ getDoubleNumber(getIndiceNutritional()) + getAnswerIN() + "\n" +
+                getString(R.string.PonderalIndice) + getDoubleNumber(getIndicePonderal()) + getAnswerIP() +
+                "\n_____________________________________________\n" +
+                getString(R.string.BP) + Porqueria.addTAS + "/ " + addTAD + " mmHg;\n" +
+                getString(R.string.BPpercentile) + result.getFirst() + "; \n" +
+                getString(R.string.BPdPercentile) + result1.getFirst() + "; \n" +
+                getString(R.string.p50) +" "+ result.getSecond() + "/ " + result1.getSecond() + "; \n" +
+                getString(R.string.p90) + " "+result.getThird() + "/ " + result1.getThird() + "; \n" +
+                getString(R.string.p95) + " "+result.getForth() + "/ " + result1.getForth() + "; \n" +
+                getString(R.string.p99) + " "+result.getFifth() + "/ " + result1.getFifth() + "." +
+                "\n_____________________________________________\n" +
+                getString(R.string.headCircumference) +" "+ addPerimeter + " cm, " + getDoubleNumber(zscorePC) + " DS, p" + getDoubleNumber(percentilaPC) + ";" +
+                "\n_____________________________________________\n" +
+                "\n" +
+                getString(R.string.finalStatement));
 
 
     }
@@ -125,7 +136,7 @@ public class MainActivity2 extends AppCompatActivity {
         return number;
     }
 
-    public static String getAnswer(Double procent) {
+    public String getAnswer(Double procent) {
         String raspuns = " ";
         if (procent <= -10) {
             raspuns = "deficit ponderal pentru talie si sex";
@@ -143,7 +154,7 @@ public class MainActivity2 extends AppCompatActivity {
             raspuns = "kg sub greutatea corespunzatoare taliei si sexul pacientului, insa incadrabil ca normoponderal";
         }
         if (procent == 0) {
-            raspuns = "greutate corespunzatoare taliei si sexului pacientului";
+            raspuns = getString(R.string.greutate_talie_sex);
         }
         return raspuns;
     }
@@ -195,19 +206,19 @@ public class MainActivity2 extends AppCompatActivity {
         if (addTotalMonths < 24) {
             String raspuns = " ";
             if (getIndicePonderal() > 1.1) {
-                raspuns = ", copil paratrofic;";
+                raspuns = getString(R.string.paratrofic);
             }
             if (getIndicePonderal() > 0.89 && getIndicePonderal() <= 1.1) {
-                raspuns = ", copil eutrofic;";
+                raspuns = getString(R.string.eutrofic);
             }
             if (getIndicePonderal() > 0.76 && getIndicePonderal() <= 0.89) {
-                raspuns = ", malnutritie proteino-calorica grad I;";
+                raspuns = getString(R.string.malnutritieI);
             }
             if (getIndicePonderal() > 0.60 && getIndicePonderal() <= 0.75) {
-                raspuns = ", malnutritie proteino-calorica grad II;";
+                raspuns = getString(R.string.malnutritieII);
             }
             if (getIndicePonderal() <= 0.60 && getIndicePonderal() != 0) {
-                raspuns = ", malnutritie proteino-calorica grad III;";
+                raspuns = getString(R.string.malnutritieIII);
             }
             if (getIndicePonderal() == 0) {
                 raspuns = "";
@@ -221,19 +232,19 @@ public class MainActivity2 extends AppCompatActivity {
         if (addTotalMonths < 24) {
             String raspuns = " ";
             if (getIndiceNutritional() > 1.1) {
-                raspuns = ", copil paratrofic;";
+                raspuns = getString(R.string.paratrofic);
             }
             if (getIndiceNutritional() > 0.89 && getIndiceNutritional() <= 1.1) {
-                raspuns = ", copil eutrofic;";
+                raspuns = getString(R.string.eutrofic);
             }
             if (getIndiceNutritional() > 0.80 && getIndiceNutritional() <= 0.89) {
-                raspuns = ", malnutritie proteino-calorica grad I;";
+                raspuns = getString(R.string.malnutritieI);
             }
             if (getIndiceNutritional() > 0.70 && getIndiceNutritional() <= 0.80) {
-                raspuns = ", malnutritie proteino-calorica grad II;";
+                raspuns = getString(R.string.malnutritieII);
             }
             if (getIndiceNutritional() <= 0.70 && getIndiceNutritional() != 0) {
-                raspuns = ", malnutritie proteino-calorica grad III;";
+                raspuns = getString(R.string.malnutritieIII);
             }
             if (getIndiceNutritional() == 0) {
                 raspuns = "";
@@ -312,8 +323,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     // gets the apropriate list in fonction to the gender
-    private ArrayList getList() {
-        ArrayList<String> list = new ArrayList<String>();
+    private ArrayList<String> getList() {
+        ArrayList<String> list = new ArrayList<>();
         if (addGender.equals("Feminin")) {
             list.addAll(Porqueria.listPercentileTAF);
         } else list.addAll(Porqueria.listPercentileTAM);
@@ -321,41 +332,41 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     // get the percentile TAS for a given TA (for Feminine or Masculine)
-    // value - if 0 then outputs TAS values, if 8 then outputs TAD values
+    // value - if 0 then outputs TAS values, if 7 then outputs TAD values
     public MyResult getPercentileTAGeneral(int addTA, int value) {
         int percentila50 = 0, percentila90 = 0, percentila95 = 0, percentila99 = 0;
-        double percentilaTAmax, percentilaTAmin;
         String percentilaTA = null;
         boolean c = true;
-        int pH1 = getIntervalPercentileForHeight() + 1 + value;
+        int pH1 = getIntervalPercentileForHeight() + value;
         //if no TA is introduced, returns 0
         if (addTA == 0) return new MyResult("0", 0, 0, 0, 0);
         //getting the list
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         list.addAll(getList());
         //finding the percentile values
         for (int i = 0; i < list.size(); i += 61) {
             if (Integer.parseInt(list.get(i)) == addYears) {
-                for (int j = i + 1 + pH1; j < i + 61; j += 15) {
-                    percentila50 = Integer.parseInt(list.get(i + pH1 + 1));
-                    percentila90 = Integer.parseInt(list.get(i + pH1 + 16));
-                    percentila95 = Integer.parseInt(list.get(i + pH1 + 31));
-                    percentila99 = Integer.parseInt(list.get(i + pH1 + 46));
+                percentila50 = Integer.parseInt(list.get(i + pH1 + 1));
+                percentila90 = Integer.parseInt(list.get(i + pH1 + 16));
+                percentila95 = Integer.parseInt(list.get(i + pH1 + 31));
+                percentila99 = Integer.parseInt(list.get(i + pH1 + 46));
 
-                    if (addTA < Integer.parseInt(list.get(j)) && c) {
-                        percentilaTAmax = Double.parseDouble(list.get(j - pH1));
+                // finding the percentile of TA
+                List<Integer> listPercentiles= Arrays.asList(percentila50, percentila90, percentila95, percentila99);
+                for (int j = 0; j < listPercentiles.size(); j++) {
+                    if (addTA == listPercentiles.get(j) && c) {
+                        List<String> stringPercentiles= Arrays.asList("50th","90th","95th","99th");
+                        percentilaTA = stringPercentiles.get(j);
                         c = false;
-                        percentilaTA = "<50th";
-                    } else if (addTA >= Integer.parseInt(list.get(j)) &&
-                            addTA <= Integer.parseInt(list.get(j + 15)) && c) {
-                        percentilaTAmin = Integer.parseInt(list.get(j - pH1));
-                        percentilaTAmax = Integer.parseInt(list.get(j - pH1 + 15));
+                        }
+                    if (addTA < listPercentiles.get(j) && c) {
+                        List<String> stringPercentiles2= Arrays.asList("<50th","50th-90th","90th-95th","95th-99th");
+                        percentilaTA = stringPercentiles2.get(j);
                         c = false;
-                        percentilaTA = percentilaTAmin + " - " + percentilaTAmax;
-
-                    } else if (addTA >= Integer.parseInt(list.get(j + 42 + pH1)) && c) {
-                        percentilaTA = "> 99th";
-                        c = false;
+                    }
+                    if (addTA > percentila99 && c) {
+                        percentilaTA = ">99th";
+                        c= false;
                     }
                 }
             }

@@ -1,3 +1,65 @@
 <resources>
     <string name="app_name">Porqueria</string>
+    <string name="modifica_limba">Limba</string>
+    <string name="Introdu_varsta">Introdu_varsta</string>
+    <string name="ani_0_18">ani (0-18)</string>
+    <string name="luni_0_11">luni (0-11)</string>
+    <string name="introdu_talia_in_cm">Introdu talia (in cm)</string>
+    <string name="talia_max_210">talia (max 210)</string>
+    <string name="introdu_greutatea_in_kg">Introdu greutatea (in kg)</string>
+    <string name="greutate_max_150">greutate (max 150)</string>
+    <string name="selecteaza_sexul_genetic">Selecteaza sexul genetic :)</string>
+    <string name="feminin">Feminin</string>
+    <string name="masculin">Masculin</string>
+    <string name="tas_mmhg">TAS (mmHg)</string>
+    <string name="tas_max_250">TAS (max 250)</string>
+    <string name="tad_mmhg">TAD (mmHg)</string>
+    <string name="tad_max_250">TAD (max 250)</string>
+    <string name="perimetru_cranian_in_cm">Perimetru cranian (in cm)</string>
+    <string name="perimetru_max_60">perimetru (max 60)</string>
+    <string name="greutate_la_nastere_in_grame">Greutate la nastere (in grame)</string>
+    <string name="greutate_la_nastere_max_6000">greutate la nastere (max 6000)</string>
+    <string name="talia_tatalui">talia tatalui</string>
+    <string name="talia_mamei">talia mamei</string>
+    <string name="talia_parintilor_in_cm">Talia parintilor (in cm)</string>
+    <string name="calculeaza_whatever">Calculeaza whatever</string>
+    <string name="reset">Reset</string>
+    <string name="sex">Sex</string>
+    <string name="age">Varsta</string>
+    <string name="years">ani</string>
+    <string name="months">luni</string>
+    <string name="Talia">Talia: </string>
+    <string name="percentila">* percentila: </string>
+    <string name="varstaSisex"> pt varsta si sex (cf CDC, WHO);</string>
+    <string name="DSptVarstaSex"> DS pt varsta si sex (cf CDC, WHO);</string>
+    <string name="DSptVarstaSexFr">DS pt varsta si sex (cf standardelor franceze 1997)</string>
+    <string name="TaliaMamei">* Talie mama = "</string>
+    <string name="HeightFather"> cm, Talie tata = </string>
+    <string name="ExpectedHeight">Talia tinta = </string>
+    <string name="Weight">Greutatea: "</string>
+    <string name="WeightAccordingHeight"> Greutatea corespunzatoare taliei pacientului este: </string>
+    <string name="SC">* S.c. = </string>
+    <string name="mp">mp;</string>
+    <string name="AccordingFrenchStandards">cf std franceze 1997; -->> </string>
+    <string name="IMC">IMC = </string>
+    <string name="Percentile2">, percentila </string>
+    <string name="NutritionalIndice">Indice nutritional = </string>
+    <string name="PonderalIndice">Indice ponderal = "</string>
+    <string name="BP">TA = </string>
+    <string name="BPpercentile">* p TAS coresp varstei si sexului este </string>
+    <string name="BPdPercentile">* p TAD coresp varstei si sexului este </string>
+    <string name="p50">-> p50= </string>
+    <string name="p90">-> p90= </string>
+    <string name="p95">-> p95= </string>
+    <string name="p99">-> p99= </string>
+    <string name="headCircumference">PC = </string>
+    <string name="finalStatement">Conform CDC pt varsta sub 2 ani si conform WHO pt 2-20 ani.</string>
+    <string name="greutate_talie_sex">greutate corespunzatoare taliei si sexului pacientului</string>
+    <string name="malnutritieIII">, malnutritie proteino-calorica grad III;</string>
+    <string name="malnutritieII">, malnutritie proteino-calorica grad II;</string>
+    <string name="malnutritieI">, malnutritie proteino-calorica grad I;</string>
+    <string name="eutrofic">, copil eutrofic;</string>
+    <string name="paratrofic">, copil paratrofic;</string>
+    <string name="date_button_set" translatable="false">selecteaza data</string>
+
 </resources>
